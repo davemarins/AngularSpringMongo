@@ -1,0 +1,116 @@
+<div class="bg-map-div"> <!-- Inizio della divisione con la mappa -->
+  <mat-card class="bg-form-card" >
+    <mat-card-title>
+      Vai all'acquisto
+    </mat-card-title>
+
+    <div>
+      <p>Posizioni selezionate:
+        <span>{{positionCount}}</span>
+      </p>
+
+      <a routerLink="/checkout">
+        <button color="accent" mat-raised-button
+                matTooltip="Vai all'aquisto">
+          Procedi all'acquisto
+        </button>
+      </a>
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>
+      Mappa
+    </mat-card-title>
+    <div
+            id="map-id"
+            leaflet
+            leafletDraw
+            (leafletMapReady)="onMapReady($event)"
+            [leafletOptions]="options"
+            [leafletDrawOptions]="drawOptions"
+    >
+    </div>
+    <div>
+      <p>Ricalcola posizioni nella mappa</p>
+      <button mat-fab
+              class="fab-button"
+              matTooltip="Reset mappa"
+              (click)='getPositionsToBuy()'>
+        <mat-icon>cached</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</div>
+
+<div class="bg-form-div">
+  <mat-card>
+    <mat-card-title>
+      Rappresentazione temporale
+    </mat-card-title>
+    <div id="timeChart">
+      <h2 class="no-positions" *ngIf="noPos">
+        Nessuna posizione selezionata.
+      </h2>
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>
+      Filtra per data
+    </mat-card-title>
+    <div class="container-row">
+      <mat-form-field style="padding-right: 20px;">
+        <input matInput [matDatepicker]="picker1" placeholder="Scegli data di inizio" [formControl]="dateInitMin"
+               (dateInput)="updateSalesMin($event)" (dateChange)="updateSalesMin($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker2" placeholder="Scegli data di fine" [formControl]="dateInitMax"
+               (dateInput)="updateSalesMax($event)" (dateChange)="updateSalesMax($event)">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="container-row">
+      <button mat-mini-fab
+              matTooltip="Filtra per data"
+              (click)='verifySales()'>
+        <mat-icon style="color: #FFFFFF">search</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+
+  <mat-card class="bg-card utenti">
+    <mat-card-title>
+      Filtra Utenti
+    </mat-card-title>
+
+    <p>
+      Numero utenti selezionati: {{usersList.selectedOptions.selected.length}}
+    </p>
+
+    <mat-selection-list #usersList dense>
+      <mat-list-option *ngFor="let user of users">
+        {{user.id}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <button mat-fab
+      class="fab-button filter"
+      matTooltip="Filtra"
+      (click)='getPositionsToBuy(usersList.selectedOptions.selected)'>
+        <mat-icon>done</mat-icon>
+    </button>
+    <button mat-fab
+      class="fab-button filter"
+      matTooltip="Reset"
+      (click)='getPositionsToBuy()'>
+        <mat-icon>cached</mat-icon>
+    </button>
+
+  </mat-card>
+  
+</div>

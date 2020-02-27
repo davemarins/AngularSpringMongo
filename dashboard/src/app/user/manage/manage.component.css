@@ -1,0 +1,89 @@
+.upload-btn-wrapper button {
+    margin: 10px;
+    cursor: pointer;
+}
+
+.filename {
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+}
+
+.bg-upload-div button {
+    margin: 20px;
+}
+
+.upload-btn-wrapper input[type=file] {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+
+mat-form-field {
+    font-size: 15px;
+    width: 100%;
+    margin: 10px;
+}
+
+.no-archives, .no-positions {
+    width: 100%;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: grey;
+    font-style: italic;
+}
+
+ul {
+    padding-left: 0;
+}
+
+li {
+    margin: 10px 10px 15px;
+    list-style: none;
+}
+
+.first-mat-card {
+    margin-top: 0;
+}
+
+.delete-archive, .download-archive {
+    margin: 10px;
+}
+
+.bg-archives-div{
+    align-content: center;
+    float: left;
+    width: 49%;
+    overflow: hidden;
+}
+
+.p-archive {
+    padding-right: 10px;
+}
+
+
+.bg-archives-bought-div{
+    align-content: center;
+    float: right;
+    width: 49%;
+    overflow: hidden;
+}
+
+.bg-upload-div{
+    width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+    .bg-archives-div, .bg-archives-bought-div {
+        float: none;
+        width: 100%;
+    }
+}

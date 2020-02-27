@@ -1,0 +1,178 @@
+<div class="bg-upload-div">
+  <mat-card>
+
+    <mat-card-title>
+      Carica file di posizioni
+    </mat-card-title>
+
+    <div class="upload-btn-wrapper row">
+      <button mat-raised-button	color="accent" matTooltip="Carica file">Carica File</button>
+      <mat-form-field class="filename">
+        <input matInput placeholder="File" readonly value="{{filename}}">
+      </mat-form-field>
+      <input #inputFile type='file' (change)="fileChanged()">
+    </div>
+
+    <button mat-fab
+            class="fab-button"
+            matTooltip="Conferma"
+            [disabled]="invalidfile"
+            (click)='submit()'>
+      <mat-icon>done</mat-icon>
+    </button>
+
+    <button mat-fab
+            class="fab-button"
+            matTooltip="Rimuovi file"
+            [disabled]="invalidfile"
+            (click)='reset()'>
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </mat-card>
+</div>
+
+<div class="bg-archives-div" >
+  <mat-card class="bg-card">
+    <mat-card-title>
+      Archivi caricati
+    </mat-card-title>
+    <div class="container">
+      <ul class="no-bullet-ul">
+        <mat-accordion>
+          <li class="first-level" *ngFor="let archive of archives">
+            <mat-expansion-panel
+                    [expanded]="false"
+                    (opened)="panelOpenState2 = true"
+                    (closed)="panelOpenState2 = false"
+                    class="archive-exp"
+            >
+              <mat-expansion-panel-header (click)='getArchiveSaleCount(archive.id)'>
+                <mat-panel-title>
+                  <p class="p-archive" >Id: {{archive.id}}</p>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-card class="first-mat-card">
+                <p>Numero di acquisti da parte di altri utenti: {{saleCount}}</p>
+              </mat-card>
+
+              <mat-card>
+                <p>Gestisci Archivio</p>
+                <button class="download-archive" mat-fab
+                        matTooltip="Download"
+                        (click)='downloadArchive(archive.id,
+                    "archive_" + archive.id + "_user_" + archive.userId)'
+                        color="primary">
+                  <mat-icon>save_alt</mat-icon>
+                </button>
+                <button class="delete-archive" mat-fab
+                        matTooltip="Rimuovi"
+                        (click)='deleteArchive(archive.id)' color="accent">
+                  <mat-icon>cancel</mat-icon>
+                </button>
+              </mat-card>
+
+              <mat-card class="position-container">
+                <p>Posizioni presenti nell'archivio</p>
+                <ul class="no-bullet-ul">
+                  <mat-accordion>
+                    <li *ngFor="let position of archive.positions">
+                      <mat-expansion-panel
+                              [expanded]="false"
+                              (opened)="panelOpenState2 = true"
+                              (closed)="panelOpenState2 = false"
+                      >
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Lat: {{position.latitude}} Long: {{position.longitude}}
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p><span>Id Posizione: </span>{{position.id}}</p>
+                        <p><span>Date: </span>{{getDate(position.timestamp*1000)}}</p>
+                      </mat-expansion-panel>
+                    </li>
+                  </mat-accordion>
+                </ul>
+              </mat-card>
+            </mat-expansion-panel>
+          </li>
+        </mat-accordion>
+      </ul>
+      <h2 class="no-archives" *ngIf="(archives === undefined || archives.length === 0 )">
+        Nessun archivio caricato.
+      </h2>
+
+    </div>
+  </mat-card>
+</div>
+
+<div class="bg-archives-bought-div">
+  <mat-card class="bg-bought-card" >
+    <mat-card-title>
+      Archivi acquistati
+    </mat-card-title>
+    <div class="container">
+      <ul id="no-bullet-ul">
+        <mat-accordion>
+          <li *ngFor="let archive of archivesBought">
+            <mat-expansion-panel
+                    [expanded]="false"
+                    (opened)="panelOpenState2 = true"
+                    (closed)="panelOpenState2 = false"
+                    class="archive-exp"
+            >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <p class="p-archive" >Id: {{archive.id}}</p>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <mat-card class="first-mat-card">
+                <p>Proprietario: {{archive.userId}}</p>
+              </mat-card>
+
+              <mat-card>
+                <p>Gestisci Archivio</p>
+                <button class="download-archive" mat-fab
+                        matTooltip="Download"
+                        (click)='downloadArchive(archive.id,
+                    "archive_" + archive.id + "_user_" + archive.userId)'
+                        color="primary">
+                  <mat-icon>save_alt</mat-icon>
+                </button>
+              </mat-card>
+
+              <mat-card class="position-container">
+                <p>Posizioni presenti nell'archivio</p>
+                <ul class="no-bullet-ul">
+                  <mat-accordion>
+                    <li *ngFor="let position of archive.positions">
+                      <mat-expansion-panel
+                              [expanded]="false"
+                              (opened)="panelOpenState2 = true"
+                              (closed)="panelOpenState2 = false"
+                      >
+                        <mat-expansion-panel-header>
+                          <mat-panel-title>
+                            Lat: {{position.latitude}} Long: {{position.longitude}}
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <p><span>Id Posizione: </span>{{position.id}}</p>
+                        <p><span>Date: </span>{{getDate(position.timestamp*1000)}}</p>
+                      </mat-expansion-panel>
+                    </li>
+                  </mat-accordion>
+                </ul>
+              </mat-card>
+            </mat-expansion-panel>
+          </li>
+        </mat-accordion>
+      </ul>
+
+      <h2 class="no-archives" *ngIf="(archivesBought === undefined || archivesBought.length === 0)">
+        Nessun archivio acquistato.
+      </h2>
+    </div>
+  </mat-card>
+</div>

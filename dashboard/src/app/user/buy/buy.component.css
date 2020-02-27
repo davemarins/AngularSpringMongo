@@ -1,0 +1,167 @@
+.bg-section-compra{
+    padding: 8px;
+}
+
+.bg-section-carrello{
+    padding: 8px;
+}
+
+.marker-user {
+    border-radius: 50%;
+    box-shadow: 0 0 5px #363636;
+}
+
+.bg-form-tab{
+    align-content: center;
+    width: 100%;
+}
+
+.bg-form-card{
+    align-content: center;
+}
+
+.bg-form-div{
+    align-content: center;
+    width: 49%;
+    overflow: hidden;
+    float: right;
+}
+
+.no-positions {
+    width: 100%;
+    margin: 15px auto;
+    color: grey;
+    font-style: italic;
+}
+
+mat-list-option {
+    text-align: left;
+    font-size: 16px;
+}
+
+body th.mat-header-cell {
+    text-align: center;
+}
+
+mat-list {
+    max-height: 160px;
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.fab-button.filter {
+    margin: 10px;
+}
+
+a {
+    display: block;
+    margin: 0 auto;
+    cursor: pointer;
+}
+
+.bg-map-div{
+    float: left;
+    width: 49%;
+}
+
+#menu-item{
+    margin: 4px;
+    align-content: center;
+    text-align: center;
+    vertical-align: baseline;
+}
+
+.bg-map-card {
+    min-height: 600px;
+}
+
+mat-expansion-panel{
+    width: 100%;
+}
+
+#map-id {
+    height: 500px;
+}
+
+.maps-button {
+    padding: 45px 0 24px 0;
+}
+
+.leaflet-draw-actions {
+    background: white;
+    box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+}
+
+.container-row {
+    text-align:center;
+    width: 100%;
+}
+
+.container-row-child{
+    width: 100%;
+}
+
+.container-column {
+    width: 50%;
+    align-content: center;
+}
+
+.container-item {
+    display: inline;
+    margin: 4px;
+}
+
+.remove-position {
+    position: relative;
+    top: 16px;
+    right: 25px;
+}
+
+mat-slider {
+    width: 55%;
+}
+
+mat-icon {
+    color: #FFFFFF
+}
+
+.scroll-box {
+    overflow-y: scroll;
+    height: 550px;
+    padding: 1rem
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+mat-form-field {
+    width: 40%;
+}
+
+#timeChart {
+    width: 100%;
+}
+
+@media screen and (max-width: 991px) {
+    .bg-form-div{
+        align-content: center;
+        width: 100%;
+        float: none;
+    }
+
+    .bg-map-div{
+        float: none;
+        width: 100%;
+    }
+
+    .bg-form-users-div {
+        width: 100%;
+        float: none;
+    }
+}

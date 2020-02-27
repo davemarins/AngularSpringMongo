@@ -1,0 +1,28 @@
+.no-archives {
+    width: 100%;
+    display: block;
+    flex-direction: row;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: grey;
+    font-style: italic;
+}
+
+a {
+    display: inline-block;
+    margin: 10px;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.icon-success {
+    color: #09B218;
+}
+
+.icon-failure {
+    color: #CC401F;
+}
